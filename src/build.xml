@@ -1,0 +1,64 @@
+<!-- Copyright (c) Microsoft Corporation -->
+
+<project>    
+    <!-- Set the properties for the build -->
+    <property name="build.dir" value="../build"/>
+	<property name="dist.dir" value="../dist"/>
+    <property name="dist.integration.dir" value="${dist.dir}/integration"/>
+	<property name="tfs.sdk.redist.dir" value="${dist.dir}/TFS-SDK/redist/lib"/>
+
+    <property name="matlab.root.dir" value="C:/Program Files/MATLAB/R2015a"/>    
+    <property name="matlab.jar.dir" value="${matlab.root.dir}/java/jar"/>
+    <property name="matlab.extjar.dir" value="${matlab.root.dir}/java/jarext"/>   
+	
+	<property name="jre7.lib.dir" value="C:/Program Files/Java/jre7/lib"/>
+    
+    <path id="classpath">        
+        <!--Include required MATLAB CMLink SDK jars and dependencies -->
+        <fileset dir="${matlab.jar.dir}" includes="cmlink/api.jar"/>
+        <fileset dir="${matlab.jar.dir}" includes="cmlink/util.jar"/>        
+        <fileset dir="${matlab.jar.dir}" includes="toolbox/shared/computils.jar"/>
+        <fileset dir="${matlab.jar.dir}" includes="util.jar"/>
+    	<fileset dir="${matlab.jar.dir}" includes="services.jar"/>
+        <fileset dir="${matlab.extjar.dir}" includes="commons-io.jar"/>   
+    	<!--Include TFS SDK redist jar -->
+    	<fileset dir="${tfs.sdk.redist.dir}" includes="com.microsoft.tfs.sdk-14.0.3.jar"/>
+    </path>
+    
+    <target name="compile" description="Generate the distribution">            
+        <!-- Build the TFS integration jar file-->
+	    <mkdir dir="${dist.integration.dir}"/>     
+        <mkdir dir="${build.dir}/classes"/>        
+        <javac includeantruntime="false" 
+               srcdir="./com/microsoft/tfs/mathworksintegration/cmlink" 
+               destdir="${build.dir}/classes" 
+               classpathref="classpath"
+     	       source="1.7"
+     	       target="1.7"
+     	       bootclasspath="${jre7.lib.dir}/rt.jar"
+        />               		
+        <copy todir="${build.dir}/classes">
+            <fileset dir="." excludes="**/*.java"/>
+        </copy>            
+        <jar destfile="${dist.integration.dir}/tfsCmlink.jar" basedir="${build.dir}/classes">            
+            <!--Creating an OSGi Manifest entry in the jar so that MATLAB can
+            detect the implemenation of com.mathworks.cmlink.api.CMAdapterFactory-->
+            <manifest>                                
+                <attribute name="Bundle-Name" value="CMAdapter"/>
+                <attribute name="MathWorks-Bundle" value="true"/>
+                <attribute name="Bundle-SymbolicName" value="com.mathworks.cmlink"/>
+                <attribute name="Bundle-Description" value="Provides CM functionality"/>
+                <attribute name="Bundle-Vendor" value="The MathWorks, Inc."/>
+                <attribute name="Bundle-Version" value="1.0.0"/>
+                <attribute name="Bundle-Activator" value="com.mathworks.util.osgi.ServicesActivator"/>
+                <attribute name="Services" value="com.mathworks.cmlink.api.version.r14a.CMAdapterFactory: com.microsoft.tfs.mathworksintegration.cmlink.TfsAdapterFactory"/>                                                                                                          
+            </manifest>
+        </jar>                        
+        <delete dir="${build.dir}"/>
+    </target>    
+
+    <target name="clean" description="Delete build output">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.integration.dir}"/>
+    </target>    
+</project>
