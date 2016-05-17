@@ -7,7 +7,10 @@ http://www.mathworks.com/help/simulink/ug/write-a-source-control-adapter-with-th
 This project is built on top of the TFS JAVA SDK, which is part of the Team Explorer Everywhere project:  
 https://github.com/Microsoft/team-explorer-everywhere
 
-### Building with Ant
+### Installing and using the app
+Open MATLAB and double click the "TFS Version Control Integration.mlappinstall" file. Follow the prompts to install the app. See appReadMe.txt for more details on setup and usage.
+
+### Building the source code with Ant
 
 1. Install MATLAB, at least version R2014a. 
 2. Install the Java 8 Development Kit and the Java 7 Runtime. The MATLAB SDK uses Java 1.7 as its target, so in theory JDK 1.7 should be sufficient, but only the JDK 8 + JRE 7 configuration has been validated.  

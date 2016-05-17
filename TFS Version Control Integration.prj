@@ -1,0 +1,170 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="4122274351" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
+    <param.appname>TFS Version Control Integration</param.appname>
+    <param.authnamewatermark>Jasper Schneider</param.authnamewatermark>
+    <param.email>jaschnei@microsoft.com</param.email>
+    <param.company>Microsoft</param.company>
+    <param.icon />
+    <param.icons />
+    <param.summary>TFS Version Control Integration in MATLAB and Simulink.</param.summary>
+    <param.description>TFS Version Control Integration in MATLAB and Simulink.</param.description>
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.products.name>
+      <item>MATLAB</item>
+    </param.products.name>
+    <param.products.id>
+      <item>'1'</item>
+      <item>'35000'</item>
+    </param.products.id>
+    <param.products.version>
+      <item>8.5</item>
+      <item>8.5</item>
+    </param.products.version>
+    <param.platforms>
+      <item>glnxa64</item>
+      <item>win64</item>
+      <item>glnx86</item>
+      <item>win32</item>
+    </param.platforms>
+    <param.output>${PROJECT_ROOT}\TFS Version Control Integration.mlappinstall</param.output>
+    <param.guid>bef991df-106d-4a5a-9700-6f60085cbfbd</param.guid>
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.screenshot />
+      <param.version />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\appReadMe.m</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\dist\integration\tfsCmlink.jar</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\license.html</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\lib\com.microsoft.tfs.sdk-14.0.3.jar</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\aix\ppc\libnative_auth.a</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\aix\ppc\libnative_console.a</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\aix\ppc\libnative_filesystem.a</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\aix\ppc\libnative_misc.a</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\aix\ppc\libnative_synchronization.a</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86_64\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86_64\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86_64\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86_64\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\freebsd\x86_64\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\ia64_32\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\ia64_32\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\ia64_32\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\ia64_32\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\ia64_32\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\PA_RISC\libnative_auth.sl</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\PA_RISC\libnative_console.sl</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\PA_RISC\libnative_filesystem.sl</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\PA_RISC\libnative_misc.sl</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\hpux\PA_RISC\libnative_synchronization.sl</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\arm\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\arm\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\arm\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\arm\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\arm\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\ppc\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\ppc\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\ppc\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\ppc\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\ppc\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86_64\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86_64\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86_64\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86_64\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\linux\x86_64\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\macosx\libnative_auth.jnilib</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\macosx\libnative_console.jnilib</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\macosx\libnative_filesystem.jnilib</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\macosx\libnative_keychain.jnilib</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\macosx\libnative_misc.jnilib</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\macosx\libnative_synchronization.jnilib</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\sparc\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\sparc\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\sparc\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\sparc\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\sparc\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86_64\libnative_auth.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86_64\libnative_console.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86_64\libnative_filesystem.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86_64\libnative_misc.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\solaris\x86_64\libnative_synchronization.so</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_auth.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_console.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_credential.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_filesystem.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_messagewindow.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_misc.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_registry.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86\native_synchronization.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_auth.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_console.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_credential.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_filesystem.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_messagewindow.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_misc.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_registry.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\native\win32\x86_64\native_synchronization.dll</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\redist.txt</file>
+      <file>${PROJECT_ROOT}\dist\TFS-SDK\redist\ThirdPartyNotices.html</file>
+      <file>${PROJECT_ROOT}\dist\TfsSettings.txt</file>
+    </fileset.depfun>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\addJarsToJavaClasspath.m</file>
+      <file>${PROJECT_ROOT}\appReadMe.txt</file>
+      <file>${PROJECT_ROOT}\dist</file>
+      <file>${PROJECT_ROOT}\getJarFiles.m</file>
+      <file>${PROJECT_ROOT}\installTFS.m</file>
+      <file>${PROJECT_ROOT}\LICENSE.txt</file>
+      <file>${PROJECT_ROOT}\readFileLines.m</file>
+      <file>${PROJECT_ROOT}\removeJarsFromJavaClasspath.m</file>
+      <file>${PROJECT_ROOT}\storeTfsSettings.m</file>
+      <file>${PROJECT_ROOT}\ThirdPartyNotices.txt</file>
+      <file>${PROJECT_ROOT}\uninstallTFS.m</file>
+      <file>${PROJECT_ROOT}\updateJavaClasspath.m</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="D:\tfs-matlab-connector" name="TFS Version Control Integration.mlappinstall" optional="false">D:\tfs-matlab-connector\TFS Version Control Integration.mlappinstall</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2015a</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

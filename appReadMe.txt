@@ -1,7 +1,8 @@
 Install instructions:
 1. Install the MATLAB app.
 2. Open the MATLAB UI and navigate to the directory where you installed the 
-   app. Run the following command: installTFS
+   app (ex: C:\users\johndoe\Documents\MATLAB\Apps\TFSVersionControlIntegration). 
+   Run the following command: installTFS
    You will be prompted for your default TFS URL. The URL must include the 
    project collection (ex: http://MyTfsServer:8080/tfs/DefaultCollection).
    You will also be asked whether you're using an on-premise TFS server with 
