@@ -1,16 +1,17 @@
 # tfs-matlab-connector
 
-This project provides TFS Version Control integration in MATLAB and Simulink.
-http://www.mathworks.com/help/matlab/matlab_prog/about-mathworks-source-control-integration.html
+This project provides TFS Version Control integration in MATLAB and Simulink.  
+http://www.mathworks.com/help/matlab/matlab_prog/about-mathworks-source-control-integration.html  
 http://www.mathworks.com/help/simulink/ug/write-a-source-control-adapter-with-the-sdk.html
 
-This project is built on top of the TFS JAVA SDK, which is part of the Team Explorer Everywhere project: https://github.com/Microsoft/team-explorer-everywhere
+This project is built on top of the TFS JAVA SDK, which is part of the Team Explorer Everywhere project:  
+https://github.com/Microsoft/team-explorer-everywhere
 
 ### Building with Ant
 
 1. Install MATLAB, at least version R2014a. 
-2. Install the Java 8 Development Kit and the Java 7 Runtime. The MATLAB SDK uses Java 1.7 as its target, so in theory JDK 1.7 should be sufficient, but only the JDK 8 + JRE 7 configuration has been validated.
-   http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+2. Install the Java 8 Development Kit and the Java 7 Runtime. The MATLAB SDK uses Java 1.7 as its target, so in theory JDK 1.7 should be sufficient, but only the JDK 8 + JRE 7 configuration has been validated.  
+   http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html  
    http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html
 3. Install Apache Ant(TM) version 1.9.7.
    http://ant.apache.org/bindownload.cgi
@@ -25,7 +26,7 @@ This project is built on top of the TFS JAVA SDK, which is part of the Team Expl
    * (Mac) PATH=~/apache-ant-1.9.7/bin:$JAVA_HOME/bin:$PATH
    * (Linux) PATH=~/apache-ant-1.9.7/bin:$JAVA_HOME/bin:$PATH
 6. Navigate to the src directory and run: 
-   * ant compile 
+   * ant compile   
    Note that the build.xml file needs the path to your MATLAB installation and the Java 7 runtime directory containing rt.jar. Default Windows values are provided in the file, but you can overwrite them on the command line: 
    * ant compile "-Dmatlab.root.dir=D:/MATLAB/R2015a" "-Djre7.lib.dir=D:/jre7/lib"
 7. To delete all build output, run:
@@ -41,7 +42,7 @@ The dist/TFS-SDK directory contains the TFS Java SDK redistributable. The conten
 
 ### Tests
 
-Automated tests for this project will be uploaded in the future. The MATLAB SDK contains some automated test cases which can be run as a starting point, but not all of the tests will pass because of some TFS-specific behaviors.
+Automated tests for this project will be uploaded in the future. The MATLAB SDK contains some automated test cases which can be run as a starting point, but not all of the tests will pass because of some TFS-specific behaviors.  
 http://www.mathworks.com/help/simulink/ug/write-a-source-control-adapter-with-the-sdk.html
 
 For manual testing, open the MATLAB UI and navigate to your local copy of this repository. Run the installTFS.m script and restart MATLAB. You can now execute TFS operations from the MATLAB UI. Run the uninstallTFS.m script when complete. See appReadMe.txt for some more details on usage.
