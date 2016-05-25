@@ -179,7 +179,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
         TfsErrorListener errorListener = new TfsErrorListener();
         AddErrorListener(errorListener);
         try {
-            this.workspace.pendBranch(
+            getWorkspace().pendBranch(
                 branchInfo.getSourcePath(),
                 branchInfo.getTargetPath(),
                 versionSpec,
@@ -228,7 +228,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                 throw new ConfigurationManagementException(ex);
             }
         }
-        this.workspace.merge(mergeInfo.getSourcePath(), 
+        getWorkspace().merge(mergeInfo.getSourcePath(), 
             mergeInfo.getTargetPath(),
             versionFrom,
             versionTo,
@@ -344,7 +344,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
             TfsErrorListener errorListener = new TfsErrorListener();
             AddErrorListener(errorListener);
             try {
-                this.workspace.pendAdd(pathArray, false, null, LockLevel.UNCHANGED, GetOptions.NONE, 
+            	getWorkspace().pendAdd(pathArray, false, null, LockLevel.UNCHANGED, GetOptions.NONE, 
                     PendChangesOptions.NONE);
             }
             finally {
@@ -408,7 +408,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
         scanForChanges();
 
         if (fileSpecs.length > 0) {
-            PendingSet pendingSet = this.workspace.getPendingChanges(fileSpecs, false);
+            PendingSet pendingSet = getWorkspace().getPendingChanges(fileSpecs, false);
             if (pendingSet != null)
             {
                 PendingChange[] pendingChanges = pendingSet.getPendingChanges();
@@ -425,7 +425,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                     int[] workItemIds = checkinData.getWorkItemIds();
                     WorkItemCheckinInfo[] associatedWorkItems = new WorkItemCheckinInfo[workItemIds.length];
                     for (int i = 0; i < workItemIds.length; i++) {
-                        WorkItem workItem = this.teamProjectCollection.getWorkItemClient().getWorkItemByID(workItemIds[i]);
+                        WorkItem workItem = Utilities.getTfsConnection().getWorkItemClient().getWorkItemByID(workItemIds[i]);
                         if (workItem == null) {
                             throw new ConfigurationManagementException("WorkItem " + workItemIds[i] + " not found.");
                         }
@@ -433,7 +433,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                     }
 
                     try {
-                        this.workspace.checkIn(pendingChanges, checkinComment, null, associatedWorkItems, null);
+                    	getWorkspace().checkIn(pendingChanges, checkinComment, null, associatedWorkItems, null);
                     }
                     catch (CheckinException ex) {
                         throw new ConfigurationManagementException(ex);
@@ -447,7 +447,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
     // TODO: Investigate the scan() and isScanNecessary() methods for possible improvement.
     private void scanForChanges() throws ConfigurationManagementException {
         try { 
-            this.workspace.getWorkspaceWatcher().forceFullScan(); 
+        	getWorkspace().getWorkspaceWatcher().forceFullScan(); 
         }
         catch (IOException ex) { 
             throw new ConfigurationManagementException(ex); 
@@ -472,7 +472,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
             TfsErrorListener errorListener = new TfsErrorListener();
             AddErrorListener(errorListener);
             try {
-                this.workspace.setLock(specArray, LockLevel.CHECKIN, GetOptions.NONE, PendChangesOptions.NONE);
+            	getWorkspace().setLock(specArray, LockLevel.CHECKIN, GetOptions.NONE, PendChangesOptions.NONE);
             }
             finally {
                 RemoveErrorListenerAndProcessErrors(errorListener);
@@ -502,11 +502,11 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
 
             String itemPath = getPathFromRevision(revision);
             VersionSpec versionSpec = VersionSpec.parseSingleVersionFromSpec(revision.getStringRepresentation(), null);
-            Item item = this.workspace.getClient().getItem(itemPath, versionSpec, DeletedState.NON_DELETED,
+            Item item = getWorkspace().getClient().getItem(itemPath, versionSpec, DeletedState.NON_DELETED,
                 GetItemsOptions.INCLUDE_SOURCE_RENAMES);
             // Can't download a directory
             if (item.getItemType() == ItemType.FILE) {
-                item.downloadFile(this.workspace.getClient(), destinationFile.getAbsolutePath());
+                item.downloadFile(getWorkspace().getClient(), destinationFile.getAbsolutePath());
             }
         }
     }
@@ -564,7 +564,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
 
         Map<String, TfsFileState> fileStateMap = new HashMap<String, TfsFileState>();
 
-        ExtendedItem[][] extendedItemsPerItemSpec = this.workspace.getExtendedItems(
+        ExtendedItem[][] extendedItemsPerItemSpec = getWorkspace().getExtendedItems(
             fileSpecs,
             DeletedState.NON_DELETED, 
             ItemType.ANY,
@@ -580,7 +580,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                 for (ExtendedItem extendedItem : itemSpecExtendedItems) {
                     // For a pending Delete, extendedItem.getLocalItem() returns null instead of the file path,
                     // so use the workspace's mapping function.
-                    String localPath = this.workspace.getMappedLocalPath(extendedItem.getTargetServerItem());
+                    String localPath = getWorkspace().getMappedLocalPath(extendedItem.getTargetServerItem());
                     extendedItemsByPath.put(localPath, extendedItem);
                 }
             }
@@ -589,13 +589,13 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                 // In the non-recursive case, we should only have 1 ExtendedItem per ItemSpec.
                 if (itemSpecExtendedItems.length > 0) {
                     ExtendedItem extendedItem = itemSpecExtendedItems[0];
-                    String localPath = this.workspace.getMappedLocalPath(extendedItem.getTargetServerItem());
+                    String localPath = getWorkspace().getMappedLocalPath(extendedItem.getTargetServerItem());
                     extendedItemsByPath.put(localPath, extendedItem);
                 }
             }
         }
 
-        Conflict[] conflicts = this.workspace.queryConflicts(null);
+        Conflict[] conflicts = getWorkspace().queryConflicts(null);
         if (conflicts != null) {
             for (Conflict conflict : conflicts) {
                 conflictsByLocalPath.put(conflict.getTargetLocalItem(), conflict);
@@ -640,7 +640,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
 
         GetRequest[] requestArray = getRequests.toArray(new GetRequest[getRequests.size()]);
         if (requestArray.length > 0) {
-            this.workspace.get(requestArray, GetOptions.NONE);
+        	getWorkspace().get(requestArray, GetOptions.NONE);
         }
     }
 
@@ -649,7 +649,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
      */
     @Override
     public String getRepositorySpecifier(File sandboxDirectory) throws ConfigurationManagementException {
-        return this.workspace.getMappedServerPath(sandboxDirectory.getAbsolutePath());
+        return getWorkspace().getMappedServerPath(sandboxDirectory.getAbsolutePath());
     }
 
     /**
@@ -668,7 +668,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
 
         GetRequest[] requestArray = getRequests.toArray(new GetRequest[getRequests.size()]);
         if (requestArray.length > 0) {
-            this.workspace.get(requestArray, GetOptions.NONE);
+        	getWorkspace().get(requestArray, GetOptions.NONE);
         }
     }
 
@@ -761,8 +761,8 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
         HashMap<File, Boolean> isStoredMap = new HashMap<File, Boolean>();
 
         for (File file : files) {
-            String serverPath = this.workspace.getMappedServerPath(file.getAbsolutePath());
-            boolean isMapped = this.workspace.serverPathExists(serverPath);
+            String serverPath = getWorkspace().getMappedServerPath(file.getAbsolutePath());
+            boolean isMapped = getWorkspace().serverPathExists(serverPath);
             isStoredMap.put(file, isMapped);
         }
 
@@ -781,7 +781,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
             // TODO: Figure out how to get full history when a file has been branched. This
             // implementation only gets the history up to the branch point.
             // Investigate the getBranchHistory() method.
-            changesets = workspace.queryHistory(
+            changesets = getWorkspace().queryHistory(
                 file.getAbsolutePath(),
                 LatestVersionSpec.INSTANCE,
                 0,
@@ -837,7 +837,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
         TfsErrorListener errorListener = new TfsErrorListener();
         AddErrorListener(errorListener);
         try {
-            this.workspace.pendRename(
+        	getWorkspace().pendRename(
                 oldLocation.getAbsolutePath(),
                 newLocation.getAbsolutePath(),
                 LockLevel.UNCHANGED,
@@ -866,7 +866,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
             TfsPendDeleteErrorListener errorListener = new TfsPendDeleteErrorListener();
             AddErrorListener(errorListener);
             try {
-                this.workspace.pendDelete(
+            	getWorkspace().pendDelete(
                     fileSpecs.toArray(new ItemSpec[fileSpecs.size()]),
                     LockLevel.UNCHANGED, 
                     GetOptions.NONE,
@@ -914,7 +914,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
             conflict = getConflictForFile(file);
         }
         conflict.setResolution(Resolution.ACCEPT_YOURS);
-        this.workspace.resolveConflict(conflict);
+        getWorkspace().resolveConflict(conflict);
         if (!conflict.isResolved())	{
             // TODO: Is there a listener to get details on why? Failing to resolve a LOCAL
             // conflict doesn't seem to trigger anything with the NonFatalErrorListener.
@@ -958,7 +958,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
             TfsPendUndoErrorListener errorListener = new TfsPendUndoErrorListener();
             AddErrorListener(errorListener);
             try {
-                this.workspace.undo(specArray, GetOptions.NONE);
+            	getWorkspace().undo(specArray, GetOptions.NONE);
             }
             finally {
                 RemoveErrorListenerAndProcessErrors(errorListener);
@@ -976,18 +976,32 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
 
         // Use GET_ALL to force re-download. The MATLAB UI pops up a warning about this,
         // indicating this is the expected behavior.
-        this.workspace.get(request, GetOptions.GET_ALL);
+        getWorkspace().get(request, GetOptions.GET_ALL);
     }
 
     // Add a listener that gets information about errors that occur during TFS operations.
-    private void AddErrorListener(TfsErrorListener errorListener) {
-        this.workspace.getClient().getEventEngine().addNonFatalErrorListener(errorListener);
+    private void AddErrorListener(TfsErrorListener errorListener) throws ConfigurationManagementException {
+    	getWorkspace().getClient().getEventEngine().addNonFatalErrorListener(errorListener);
     }
 
     // Remove the listener that gets information about errors that occur during TFS operations.
     private void RemoveErrorListenerAndProcessErrors(TfsErrorListener errorListener) 
         throws ConfigurationManagementException {
-        this.workspace.getClient().getEventEngine().removeNonFatalErrorListener(errorListener);
+    	getWorkspace().getClient().getEventEngine().removeNonFatalErrorListener(errorListener);
         errorListener.ProcessErrors();
+    }
+    
+    // Gets the cached Workspace for this adapter, refreshing it if necessary.
+    private Workspace getWorkspace() throws ConfigurationManagementException {
+        // Refresh the cached workspace if the TFS connection has changed.
+        if (this.workspace.getClient().getConnection().isClosed()) {
+            Workspace newWorkspace = Utilities.getWorkspaceForLocalPath(this.sandboxRoot.getAbsolutePath());
+            if (newWorkspace == null) {
+            	throw new ConfigurationManagementException("No Workspace found for directory " +
+            	    this.sandboxRoot.getAbsolutePath() + " under current TFS connection.");
+            }
+            this.workspace = newWorkspace;
+        }
+        return this.workspace;
     }
 }

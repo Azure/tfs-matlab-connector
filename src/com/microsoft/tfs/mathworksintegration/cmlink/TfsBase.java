@@ -10,17 +10,15 @@ import com.mathworks.cmlink.api.InteractorSupportedFeature;
 import com.mathworks.cmlink.api.customization.CoreAction;
 import com.mathworks.cmlink.api.customization.CustomizationWidgetFactory;
 import com.mathworks.cmlink.api.version.r14a.CMInteractor;
-import com.microsoft.tfs.core.TFSTeamProjectCollection;
 
 /**
  * Implementation of the {@link CMInteractor} interface which handles TFS connections.
  */
 public class TfsBase implements CMInteractor {
 
-    protected TFSTeamProjectCollection teamProjectCollection;
-
     private final Collection<InteractorSupportedFeature> supportedFeatures;
-
+    private boolean isConnected;
+    
     /**
      * Initializes a TfsBase instance.
      */
@@ -36,8 +34,8 @@ public class TfsBase implements CMInteractor {
     @Override
     public void buildCustomActions(CustomizationWidgetFactory widgetFactory) {
 
-        // Connect to a TFS server. This lets the user change which server/project collection they're using.
-        widgetFactory.createActionWidget("Connect to TFS", null, new CoreAction() {
+        // This lets the user change which TFS server/project collection they're using.
+        widgetFactory.createActionWidget("Change TFS Connection", null, new CoreAction() {
             @Override
             public void execute() throws ConfigurationManagementException {
 
@@ -55,6 +53,16 @@ public class TfsBase implements CMInteractor {
             }
         });
 
+        // This text shows up in the View Details dialog under the "TFS info:" label.
+        String infoString = null;
+        try {
+            String url = Utilities.getTfsConnection().getBaseURI().toString();
+            infoString = "URL: " + url;
+        }
+        catch (Exception ex) {
+        	// Just don't display anything
+        }
+        widgetFactory.createLabelWidget(infoString);
     }
 
     /**
@@ -62,7 +70,9 @@ public class TfsBase implements CMInteractor {
      */
     @Override
     public void connect() throws ConfigurationManagementException {
-        this.teamProjectCollection = Utilities.getTfsConnection();
+        if (Utilities.getTfsConnection() != null) {
+            this.isConnected = true;
+        }
     }
 
     /**
@@ -105,7 +115,7 @@ public class TfsBase implements CMInteractor {
      */
     @Override
     public boolean isReady() {
-        return this.teamProjectCollection != null;
+        return this.isConnected;
     }
 
 }

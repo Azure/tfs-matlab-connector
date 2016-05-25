@@ -98,7 +98,7 @@ public class TfsRepository extends TfsBase implements CMRepository {
             connect();
         }
 
-        VersionControlClient versionControlClient = this.teamProjectCollection.getVersionControlClient();
+        VersionControlClient versionControlClient = Utilities.getTfsConnection().getVersionControlClient();
         Workspace workspace = Utilities.getWorkspaceForLocalPath(sandboxRoot.getAbsolutePath());
         if (workspace != null) {
             throw new ConfigurationManagementException("A sandbox already exists at the specified local path");
