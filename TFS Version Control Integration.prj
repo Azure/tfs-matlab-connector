@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="1386900377" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="793858943" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
     <param.appname>TFS Version Control Integration</param.appname>
     <param.authnamewatermark>Jasper Schneider</param.authnamewatermark>
     <param.email>jaschnei@microsoft.com</param.email>

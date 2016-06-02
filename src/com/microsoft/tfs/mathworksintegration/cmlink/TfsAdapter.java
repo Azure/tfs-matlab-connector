@@ -759,13 +759,19 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
     @Override
     public Map<File, Boolean> isStored(Collection<File> files) throws ConfigurationManagementException {
         HashMap<File, Boolean> isStoredMap = new HashMap<File, Boolean>();
+        Map<File, FileState> fileStates = getFileState(files);
+        
+        for (Map.Entry<File, FileState> entry : fileStates.entrySet()) {
+            FileState state = entry.getValue();
+            LocalStatus status = state == null ? null : state.getLocalStatus();
+            boolean stored = status != null
+                && status != LocalStatus.NOT_UNDER_CM
+                && status != LocalStatus.IGNORED
+                && status != LocalStatus.UNKNOWN;
 
-        for (File file : files) {
-            String serverPath = getWorkspace().getMappedServerPath(file.getAbsolutePath());
-            boolean isMapped = getWorkspace().serverPathExists(serverPath);
-            isStoredMap.put(file, isMapped);
+            isStoredMap.put(entry.getKey(), stored);
         }
-
+        
         return isStoredMap;
     }
 
@@ -837,7 +843,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
         TfsErrorListener errorListener = new TfsErrorListener();
         AddErrorListener(errorListener);
         try {
-        	getWorkspace().pendRename(
+            getWorkspace().pendRename(
                 oldLocation.getAbsolutePath(),
                 newLocation.getAbsolutePath(),
                 LockLevel.UNCHANGED,
