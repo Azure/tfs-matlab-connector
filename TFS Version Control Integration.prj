@@ -131,6 +131,9 @@
     <fileset.resources>
       <file>${PROJECT_ROOT}\addJarsToJavaClasspath.m</file>
       <file>${PROJECT_ROOT}\appReadMe.txt</file>
+      <file>${PROJECT_ROOT}\img\ManageFiles.png</file>
+      <file>${PROJECT_ROOT}\img\TFSSelect.png</file>     
+      <file>${PROJECT_ROOT}\appReadMe.html</file>
       <file>${PROJECT_ROOT}\dist</file>
       <file>${PROJECT_ROOT}\getJarFiles.m</file>
       <file>${PROJECT_ROOT}\installTFS.m</file>

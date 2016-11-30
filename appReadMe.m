@@ -3,7 +3,7 @@
 function appReadMe
 % Displays information on using this app.
 location = fileparts(which(mfilename));
-web(fullfile(location, 'appReadMe.txt'));
+web(fullfile(location, 'appReadMe.html'));
 
 end
 
