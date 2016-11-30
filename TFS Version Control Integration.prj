@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="793858943" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="793858943" file="c:\thosey\TFS\TFS Version Control Integration.prj" location="c:\thosey\TFS" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
     <param.appname>TFS Version Control Integration</param.appname>
     <param.authnamewatermark>Jasper Schneider</param.authnamewatermark>
     <param.email>jaschnei@microsoft.com</param.email>
@@ -14,12 +14,10 @@
       <item>MATLAB</item>
     </param.products.name>
     <param.products.id>
-      <item>'1'</item>
-      <item>'35000'</item>
+      <item>1</item>
     </param.products.id>
     <param.products.version>
-      <item>8.5</item>
-      <item>8.5</item>
+      <item>8.6</item>
     </param.products.version>
     <param.platforms>
       <item>glnxa64</item>
@@ -27,13 +25,14 @@
       <item>glnx86</item>
       <item>win32</item>
     </param.platforms>
-    <param.output>${PROJECT_ROOT}\TFS Version Control Integration.mlappinstall</param.output>
+    <param.output>c:\thosey\TFS</param.output>
     <param.guid>bef991df-106d-4a5a-9700-6f60085cbfbd</param.guid>
     <unset>
       <param.icon />
       <param.icons />
       <param.screenshot />
       <param.version />
+      <param.output />
     </unset>
     <fileset.main>
       <file>${PROJECT_ROOT}\appReadMe.m</file>
@@ -144,12 +143,37 @@
     </fileset.resources>
     <fileset.package />
     <build-deliverables>
-      <file location="D:\tfs-matlab-connector" name="TFS Version Control Integration.mlappinstall" optional="false">D:\tfs-matlab-connector\TFS Version Control Integration.mlappinstall</file>
+      <file location="c:\thosey" name="TFS" optional="false">c:\thosey\TFS</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2015a</root>
-      <toolboxes />
+      <root>C:\Program Files\MATLAB\R2015b_BslxCodeFreeze</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="embeddedcoder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
     </matlab>
     <platform>
       <unix>false</unix>
@@ -160,7 +184,7 @@
       <vista>false</vista>
       <linux>false</linux>
       <solaris>false</solaris>
-      <osver>6.2</osver>
+      <osver>6.1</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>win64</arch>
