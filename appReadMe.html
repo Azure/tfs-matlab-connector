@@ -4,14 +4,14 @@
         <title>TFS MATLAB Integration App</title>
     </head>
     <body>
-        <h2>Introduction</h2>
-        <p>
-            This app provides an integration between MATLAB and TFS.
-            In order to use this app it must first be set up by performing
-            the following configuration steps.
-    </p>       
         
-        <h2>Configuring the integration:</h2>                     
+        <h2>TFS MATLAB Integration App</h2>
+        <p>
+            This app provides an integration between MATLAB and Team Foundation Server (TFS).
+            To use this app, you must perform the following configuration steps.
+        </p>       
+        
+        <h2>Configuring the integration</h2>                     
         <ol>
             <li><p>
                     Run the following command at the command prompt: 
@@ -25,11 +25,11 @@
                     Otherwise, you will be prompted for login credentials.
             </p></li>
             <li><p>
-                    Restart MATLAB after the installation completes.
+                    Restart MATLAB after running the configuration script <code>installTFS</code>.
             </p></li>
         </ol>
         
-        <h2>Usage instructions:</h2>
+        <h2>Usage instructions</h2>
         <ol>           
             <li><p>
                     When you navigate to a TFS Workspace directory, MATLAB will automatically detect 
@@ -58,14 +58,14 @@
             </p></li>           
         </ol>
         
-        <h2> Creating a workspace using MATLAB:</h2>
+        <h2> Creating a workspace using MATLAB</h2>
         <ol>           
             <li><p>
-                    In MATLAB's current folder tools navigate to the folder where you want
+                    In MATLAB's Current Folder browser navigate to the folder where you want
                     to create the workspace.
             </p></li>
             <li><p>
-                    Right click in the current folder tool and select the context menu 
+                    Right click in the Current Folder browser and select the context menu 
                     "Source Control"->"Manage Files".
             </p>
                 <img src="img/ManageFiles.png" alt="Manage Files Menu">
@@ -86,7 +86,7 @@
             </p></li>           
         </ol>
         
-        <h2>Uninstall instructions:</h2>
+        <h2>Uninstall instructions</h2>
         <ol>              
             <li><p>
                     Navigate to the app directory and run the following command: uninstallTFS
@@ -101,14 +101,13 @@
             </p></li>            
         </ol>
         
-        <h2>Known issues:</h2>
+        <h2>Known issues</h2>
         <ol>            
             <li><p>
-                    The TFS Java SDK uses an older version of the TFS APIs than Visual
-                    Studio.  Workspaces you create with the Java SDK are usable in Visual Studio, 
-                    but Workspaces created in Visual Studio have inconsistent behavior with 
-                    the SDK. For the best experience, you should create a new Workspace in the 
-                    MATLAB UI.
+                    The TFS Java SDK uses an older version of the TFS APIs than Visual Studio.
+                    Workspaces you create with the Java SDK are usable in Visual Studio, 
+                    but Workspaces created in Visual Studio have inconsistent behavior with the SDK. 
+                    For the best experience, you should create a new Workspace using MATLAB.
             </p></li>
             <li><p>
                     The "Tag" features are not implemented - this feature will be deprecated 
