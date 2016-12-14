@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="793858943" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="320860973" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
     <param.appname>TFS Version Control Integration</param.appname>
     <param.authnamewatermark>Jasper Schneider</param.authnamewatermark>
     <param.email>jaschnei@microsoft.com</param.email>
@@ -9,7 +9,7 @@
     <param.summary>TFS Version Control Integration in MATLAB and Simulink.</param.summary>
     <param.description>TFS Version Control Integration in MATLAB and Simulink.</param.description>
     <param.screenshot />
-    <param.version>1.0</param.version>
+    <param.version>1.1.0</param.version>
     <param.products.name>
       <item>MATLAB</item>
     </param.products.name>
@@ -33,7 +33,6 @@
       <param.icon />
       <param.icons />
       <param.screenshot />
-      <param.version />
     </unset>
     <fileset.main>
       <file>${PROJECT_ROOT}\appReadMe.m</file>
@@ -130,9 +129,11 @@
     </fileset.depfun>
     <fileset.resources>
       <file>${PROJECT_ROOT}\addJarsToJavaClasspath.m</file>
-      <file>${PROJECT_ROOT}\appReadMe.txt</file>
+      <file>${PROJECT_ROOT}\appReadMe.html</file>
       <file>${PROJECT_ROOT}\dist</file>
       <file>${PROJECT_ROOT}\getJarFiles.m</file>
+      <file>${PROJECT_ROOT}\img\ManageFiles.png</file>
+      <file>${PROJECT_ROOT}\img\TFSSelect.png</file>
       <file>${PROJECT_ROOT}\installTFS.m</file>
       <file>${PROJECT_ROOT}\LICENSE.txt</file>
       <file>${PROJECT_ROOT}\readFileLines.m</file>

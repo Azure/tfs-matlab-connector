@@ -48,7 +48,7 @@ The dist/TFS-SDK directory contains the TFS Java SDK redistributable. The conten
 Automated tests for this project will be uploaded in the future. The MATLAB SDK contains some automated test cases which can be run as a starting point, but not all of the tests will pass because of some TFS-specific behaviors.  
 http://www.mathworks.com/help/simulink/ug/write-a-source-control-adapter-with-the-sdk.html
 
-For manual testing, open the MATLAB UI and navigate to your local copy of this repository. Run the installTFS.m script and restart MATLAB. You can now execute TFS operations from the MATLAB UI. Run the uninstallTFS.m script when complete. See appReadMe.txt for some more details on usage.
+For manual testing, open the MATLAB UI and navigate to your local copy of this repository. Run the installTFS.m script and restart MATLAB. You can now execute TFS operations from the MATLAB UI. Run the uninstallTFS.m script when complete. See appReadMe.html for some more details on usage.
 
 ***
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
