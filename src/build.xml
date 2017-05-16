@@ -7,7 +7,7 @@
     <property name="dist.integration.dir" value="${dist.dir}/integration"/>
 	<property name="tfs.sdk.redist.dir" value="${dist.dir}/TFS-SDK/redist/lib"/>
 
-    <property name="matlab.root.dir" value="C:/Program Files/MATLAB/R2015a"/>    
+    <property name="matlab.root.dir" value="C:/Program Files/MATLAB/R2017a"/>    
     <property name="matlab.jar.dir" value="${matlab.root.dir}/java/jar"/>
     <property name="matlab.extjar.dir" value="${matlab.root.dir}/java/jarext"/>   
 	
@@ -51,7 +51,7 @@
                 <attribute name="Bundle-Vendor" value="The MathWorks, Inc."/>
                 <attribute name="Bundle-Version" value="1.0.0"/>
                 <attribute name="Bundle-Activator" value="com.mathworks.util.osgi.ServicesActivator"/>
-                <attribute name="Services" value="com.mathworks.cmlink.api.version.r14a.CMAdapterFactory: com.microsoft.tfs.mathworksintegration.cmlink.TfsAdapterFactory"/>                                                                                                          
+                <attribute name="Services" value="com.mathworks.cmlink.api.version.r16b.CMAdapterFactory: com.microsoft.tfs.mathworksintegration.cmlink.TfsAdapterFactory"/>                                                                                                          
             </manifest>
         </jar>                        
         <delete dir="${build.dir}"/>

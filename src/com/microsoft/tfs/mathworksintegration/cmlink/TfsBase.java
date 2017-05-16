@@ -9,7 +9,7 @@ import com.mathworks.cmlink.api.ConfigurationManagementException;
 import com.mathworks.cmlink.api.InteractorSupportedFeature;
 import com.mathworks.cmlink.api.customization.CoreAction;
 import com.mathworks.cmlink.api.customization.CustomizationWidgetFactory;
-import com.mathworks.cmlink.api.version.r14a.CMInteractor;
+import com.mathworks.cmlink.api.version.r16b.CMInteractor;
 
 /**
  * Implementation of the {@link CMInteractor} interface which handles TFS connections.

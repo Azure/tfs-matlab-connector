@@ -12,7 +12,7 @@ Open MATLAB and double click the "TFS Version Control Integration.mlappinstall" 
 
 ### Building the source code with Ant
 
-1. Install MATLAB, at least version R2014a. 
+1. Install MATLAB, at least version R2016b. 
 2. Install the Java 8 Development Kit and the Java 7 Runtime. The MATLAB SDK uses Java 1.7 as its target, so in theory JDK 1.7 should be sufficient, but only the JDK 8 + JRE 7 configuration has been validated.  
    http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html  
    http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html
@@ -31,7 +31,7 @@ Open MATLAB and double click the "TFS Version Control Integration.mlappinstall" 
 6. Navigate to the src directory and run: 
    * ant compile   
    Note that the build.xml file needs the path to your MATLAB installation and the Java 7 runtime directory containing rt.jar. Default Windows values are provided in the file, but you can overwrite them on the command line: 
-   * ant compile "-Dmatlab.root.dir=D:/MATLAB/R2015a" "-Djre7.lib.dir=D:/jre7/lib"
+   * ant compile "-Dmatlab.root.dir=D:/MATLAB/R2017a" "-Djre7.lib.dir=D:/jre7/lib"
 7. To delete all build output, run:
    * ant clean
    
