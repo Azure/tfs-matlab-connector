@@ -55,13 +55,11 @@ public class TfsBase implements CMInteractor {
 
         // This text shows up in the View Details dialog under the "TFS info:" label.
         String infoString = null;
-        try {
-            String url = Utilities.getTfsConnection().getBaseURI().toString();
-            infoString = "URL: " + url;
+        String endpoint = Utilities.getStoredEndpoint();
+        if (endpoint != null) {
+        	infoString = "Stored URL: " + endpoint;
         }
-        catch (Exception ex) {
-        	// Just don't display anything
-        }
+
         widgetFactory.createLabelWidget(infoString);
     }
 

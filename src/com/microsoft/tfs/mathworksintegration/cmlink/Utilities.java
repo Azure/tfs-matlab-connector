@@ -93,7 +93,7 @@ public class Utilities {
             }
 
             try {
-                collection = new TFSTeamProjectCollection(URIUtils.newURI(endpoint), creds);	
+                collection = new TFSTeamProjectCollection(URIUtils.newURI(endpoint), creds);
                 collection.ensureAuthenticated();
                 isConnected = true;
             }
@@ -163,6 +163,23 @@ public class Utilities {
         }
     }
 
+    // Gets the stored TFS project collection endpoint
+    public static String getStoredEndpoint() {
+    	String endpoint = null;
+        try {
+        	File distDirectory = getDistDirectory();
+            List<String> settings = getSavedTfsSettings(distDirectory);
+            if (settings != null) {
+                endpoint = settings.get(0);
+            }
+        }
+        catch (Exception ex) {
+        	// Just don't return anything
+        }
+    	
+    	return endpoint;
+    }
+    
     // Initialize the TFSTeamProjectCollection, or retrieve the previously initialized instance.
     public static TFSTeamProjectCollection getTfsConnection() throws ConfigurationManagementException {
         if (teamProjectCollection == null) {
