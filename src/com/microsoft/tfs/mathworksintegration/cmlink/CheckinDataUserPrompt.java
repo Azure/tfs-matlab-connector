@@ -19,12 +19,12 @@ public class CheckinDataUserPrompt implements ICheckinDataProvider {
      * {@inheritDoc}
      */
     @Override
-    public CheckinData getData() throws ConfigurationManagementException {
+    public CheckinData getData(String comment) throws ConfigurationManagementException {
         // TODO: Investigate integrating with TEE UIs.
         JLabel workItemsLabel = new JLabel("WorkItem Ids (use a comma to separate multiple Ids):");
         JTextField workItemsText = new JTextField();
         JLabel commentLabel = new JLabel("Checkin comment:");
-        JTextField commentText = new JTextField();
+        JTextField commentText = new JTextField(comment);
         JComponent[] components = new JComponent[] { workItemsLabel, workItemsText, commentLabel, commentText };
 
         CheckinData data;
@@ -38,8 +38,8 @@ public class CheckinDataUserPrompt implements ICheckinDataProvider {
         if (result == JOptionPane.OK_OPTION) {
             // TODO: In a more generic solution, we should have a setting to indicate
             // whether WorkItem linking and/or comments are required on checkins.
-            String comment = commentText.getText();
-            if (comment == null || comment.isEmpty()) {
+            String updatedComment = commentText.getText();
+            if (updatedComment == null || updatedComment.isEmpty()) {
                 throw new ConfigurationManagementException("A checkin comment must be supplied.");
             }
 
@@ -61,7 +61,7 @@ public class CheckinDataUserPrompt implements ICheckinDataProvider {
                 }
             }
 
-            data = new CheckinData(workItemIds, comment);
+            data = new CheckinData(workItemIds, updatedComment);
         }
         else
         {

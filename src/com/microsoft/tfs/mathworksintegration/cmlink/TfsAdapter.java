@@ -404,13 +404,13 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                 PendingChange[] pendingChanges = pendingSet.getPendingChanges();
                 if (pendingChanges != null)
                 {
-                    CheckinData checkinData = this.checkinDataProvider.getData();
+                    CheckinData checkinData = this.checkinDataProvider.getData(comment);
                     if (!checkinData.shouldSubmit()) {
                         // User hit Cancel, so abort
                         return;
                     }
-                    // If a comment is provided to this method, use it.  Otherwise get it from the ICheckinDataProvider.
-                    String checkinComment = comment != null && !comment.isEmpty() ? comment : checkinData.getCheckinComment();
+
+                    String checkinComment = checkinData.getCheckinComment();
                     // Get the TFS WorkItems to associate with the checkin.
                     int[] workItemIds = checkinData.getWorkItemIds();
                     WorkItemCheckinInfo[] associatedWorkItems = new WorkItemCheckinInfo[workItemIds.length];
