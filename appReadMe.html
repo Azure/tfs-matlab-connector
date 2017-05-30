@@ -10,7 +10,7 @@
             This app provides an integration between MATLAB and Team Foundation Server (TFS).
             <br/>
             <b>To use this app, you must perform the following configuration steps.</b>
-        </p>       
+        </p>
         
         <h2>Configuring the integration</h2>                     
         <ol>
@@ -23,7 +23,13 @@
                     project collection (ex: http://MyTfsServer:8080/tfs/DefaultCollection).
                     You will also be asked whether you're using an on-premise TFS server with 
                     Windows auth. If you are, then MATLAB will connect to TFS automatically.
-                    Otherwise, you will be prompted for login credentials.
+                    Otherwise, you will be prompted for login credentials. <b>Note:</b> If you 
+                    are using Visual Studio Online (VSO), then basic username/password 
+                    authentication will not work if multi-factor authentication is configured
+                    on the server. Follow 
+                    <a href="https://www.visualstudio.com/docs/setup-admin/team-services/use-personal-access-tokens-to-authenticate">
+                    these instructions</a> to create a Personal Access Token (PAT), and enter this 
+                    PAT in the dialog box instead of your password.
             </p></li>
             <li><p>
                     Restart MATLAB after running the configuration script <code>installTFS</code>.
@@ -31,7 +37,7 @@
         </ol>
         
         <h2>Usage instructions</h2>
-        <ol>           
+        <ol>
             <li><p>
                     When you navigate to a TFS Workspace directory, MATLAB will automatically detect 
                     that it is a TFS Workspace and display TFS status icons. Note that it may take 
@@ -56,11 +62,11 @@
                     run the storeTfsSettings.m MATLAB function and restart MATLAB.
                     <br/>
                     <code>>> storeTfsSettings </code>
-            </p></li>           
+            </p></li>
         </ol>
         
         <h2>Creating a workspace using MATLAB</h2>
-        <ol>           
+        <ol>
             <li><p>
                     In MATLAB's Current Folder browser navigate to the folder where you want
                     to create the workspace.
@@ -76,7 +82,7 @@
             </p>
                 <img src="img/TFSSelect.png" alt="Selecting TFS">
             </li>
-            <li><p> 
+            <li><p>
                     For the repository path, enter the source location on the TFS Server 
                     (ex: $/MyProject/Src/Main).
             </p></li>
@@ -85,11 +91,11 @@
             </p></li>
             <li><p>
                     Click the Retrieve button.
-            </p></li>           
+            </p></li>
         </ol>
         
         <h2>Uninstall instructions</h2>
-        <ol>              
+        <ol>
             <li><p>
                     Navigate to the app directory and run the following command: uninstallTFS
                     This will remove all configuration information stored with the app.
@@ -100,17 +106,17 @@
             <li><p>
                     Now uninstall the app: In the MATLAB APPS toolbar, select the TFS 
                     Integration App right click and select "Uninstall".
-            </p></li>            
+            </p></li>
         </ol>
         
         <h2>Known issues</h2>
-        <ol>            
+        <ol>
             <li><p>
                     The TFS Java SDK uses an older version of the TFS APIs than Visual Studio.
                     Workspaces you create with the Java SDK are usable in Visual Studio, 
                     but Workspaces created in Visual Studio have inconsistent behavior with the SDK. 
                     For the best experience, you should create a new Workspace using MATLAB.
-            </p></li>                   
-        </ol>               
+            </p></li>
+        </ol>
     </body>
 </html>

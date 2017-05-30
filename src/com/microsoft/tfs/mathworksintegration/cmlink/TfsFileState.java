@@ -2,12 +2,15 @@
 
 package com.microsoft.tfs.mathworksintegration.cmlink;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
-import com.mathworks.cmlink.api.FileState;
+import com.mathworks.cmlink.api.FileProperty;
 import com.mathworks.cmlink.api.IntegerRevision;
 import com.mathworks.cmlink.api.LocalStatus;
 import com.mathworks.cmlink.api.Revision;
+import com.mathworks.cmlink.api.version.r16b.FileState;
 import com.microsoft.tfs.core.clients.versioncontrol.soapextensions.ChangeType;
 import com.microsoft.tfs.core.clients.versioncontrol.soapextensions.Conflict;
 import com.microsoft.tfs.core.clients.versioncontrol.soapextensions.ExtendedItem;
@@ -61,7 +64,8 @@ public class TfsFileState implements FileState {
             ChangeType tfsChange = this.extendedItem.getPendingChange();
             if (tfsChange.contains(ChangeType.ADD) || tfsChange.contains(ChangeType.RENAME) ||
                 tfsChange.contains(ChangeType.BRANCH)) {
-                // There is no LocalStatus.RENAMED, so renames and branches show up as ADDED
+                // Renames and branches show up with a LocalStatus of ADDED, but we add an entry
+            	// to the properties collection to clarify.
                 return LocalStatus.ADDED;
             }
             else if (tfsChange.contains(ChangeType.DELETE)) {
@@ -81,6 +85,37 @@ public class TfsFileState implements FileState {
 
             return LocalStatus.UNKNOWN;
         }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Collection<FileProperty> getProperties() {
+        ArrayList<FileProperty> properties = new ArrayList<FileProperty>();
+
+        if (this.extendedItem != null && this.extendedItem.hasLocalChange()) {
+            ChangeType tfsChange = this.extendedItem.getPendingChange();
+            if (tfsChange.contains(ChangeType.RENAME)) {
+        	    TfsFileProperty renamedProperty = new TfsFileProperty("rename", "rename", true);
+        	    properties.add(renamedProperty);
+            }
+            if (tfsChange.contains(ChangeType.BRANCH)) {
+        	    TfsFileProperty branchProperty = new TfsFileProperty("branch", "branch", true);
+        	    properties.add(branchProperty);
+            }
+            if (tfsChange.contains(ChangeType.MERGE)) {
+        	    TfsFileProperty mergeProperty = new TfsFileProperty("merge", "merge", true);
+        	    properties.add(mergeProperty);
+            }
+        }
+        TfsFileProperty latestProperty = new TfsFileProperty(
+            isLatest() ? "latest" : "not latest",
+            "latest",
+            false);
+        properties.add(latestProperty);
+        
+        return properties;
     }
 
     /**
@@ -126,11 +161,25 @@ public class TfsFileState implements FileState {
     public Conflict getConflict() {
         return this.conflict;
     }
+    
+    /**
+     * Gets the base revision for a conflict. If there is no conflict, then return null.
+     */
+    public Revision getBaseConflictRevision() {
+        Revision revision = null;
+        if (this.conflict != null) {
+            HashMap<String, String> revisionInfo = new HashMap<String, String>();
+            revisionInfo.put(Utilities.RevisionInfoKey_Path, this.conflict.getBaseServerItem());
+            revision = new IntegerRevision(this.conflict.getBaseVersion(), revisionInfo);
+        }
+
+        return revision;
+    }
 
     /**
      * Gets the revision causing the conflict. If there is no conflict, then return null.
      */
-    public Revision getConflictRevision() {
+    public Revision getTheirConflictRevision() {
         Revision revision = null;
         if (this.conflict != null) {
             HashMap<String, String> revisionInfo = new HashMap<String, String>();

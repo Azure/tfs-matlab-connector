@@ -26,13 +26,15 @@ import javax.swing.JTextField;
 import com.mathworks.cmlink.api.AdapterSupportedFeature;
 import com.mathworks.cmlink.api.ApplicationInteractor;
 import com.mathworks.cmlink.api.ConfigurationManagementException;
-import com.mathworks.cmlink.api.FileState;
+import com.mathworks.cmlink.api.ConflictedRevisions;
 import com.mathworks.cmlink.api.IntegerRevision;
 import com.mathworks.cmlink.api.LocalStatus;
 import com.mathworks.cmlink.api.Revision;
 import com.mathworks.cmlink.api.customization.CoreAction;
 import com.mathworks.cmlink.api.customization.CustomizationWidgetFactory;
-import com.mathworks.cmlink.api.version.r14a.CMAdapter;
+import com.mathworks.cmlink.api.customization.file.CustomizationFileActionFactory;
+import com.mathworks.cmlink.api.version.r16b.CMAdapter;
+import com.mathworks.cmlink.api.version.r16b.FileState;
 import com.microsoft.tfs.core.clients.versioncontrol.GetItemsOptions;
 import com.microsoft.tfs.core.clients.versioncontrol.GetOptions;
 import com.microsoft.tfs.core.clients.versioncontrol.MergeFlags;
@@ -357,22 +359,10 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
      * {@inheritDoc}
      */
     @Override
-    public void addTag(Collection<File> files, String tagName, String comment) 
-        throws ConfigurationManagementException {
-        // This method will be deprecated - no implementation.
-        throw new ConfigurationManagementException("Tag features not implemented");
-    }
+    public void buildCustomFileActions(CustomizationFileActionFactory customizationFileActionFactory) {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addTagRecursively(File directory, String tagName, String comment) 
-        throws ConfigurationManagementException {
-        // This method will be deprecated - no implementation.
-    	throw new ConfigurationManagementException("Tag features not implemented");
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -414,13 +404,13 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                 PendingChange[] pendingChanges = pendingSet.getPendingChanges();
                 if (pendingChanges != null)
                 {
-                    CheckinData checkinData = this.checkinDataProvider.getData();
+                    CheckinData checkinData = this.checkinDataProvider.getData(comment);
                     if (!checkinData.shouldSubmit()) {
                         // User hit Cancel, so abort
                         return;
                     }
-                    // If a comment is provided to this method, use it.  Otherwise get it from the ICheckinDataProvider.
-                    String checkinComment = comment != null && !comment.isEmpty() ? comment : checkinData.getCheckinComment();
+
+                    String checkinComment = checkinData.getCheckinComment();
                     // Get the TFS WorkItems to associate with the checkin.
                     int[] workItemIds = checkinData.getWorkItemIds();
                     WorkItemCheckinInfo[] associatedWorkItems = new WorkItemCheckinInfo[workItemIds.length];
@@ -478,14 +468,6 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                 RemoveErrorListenerAndProcessErrors(errorListener);
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean doTagsNeedComments() {
-        return false;
     }
 
     /**
@@ -676,7 +658,7 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
      * {@inheritDoc}
      */
     @Override
-    public Revision getRevisionCausingConflict(File file) throws ConfigurationManagementException {
+    public ConflictedRevisions getRevisionCausingConflict(File file) throws ConfigurationManagementException {
         FileState fileState = getFileState(Collections.singleton(file)).get(file);
 
         if (fileState.getLocalStatus() != LocalStatus.CONFLICTED) {
@@ -684,7 +666,10 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
         }
         if(TfsFileState.class.isInstance(fileState)) {
             TfsFileState tfsState = (TfsFileState)fileState;
-            return tfsState.getConflictRevision();
+            Revision baseRevision = tfsState.getBaseConflictRevision();
+            Revision theirRevision = tfsState.getTheirConflictRevision();
+            
+            return new TfsConflictedRevisions(baseRevision, theirRevision);
         }
         else
         {
@@ -710,15 +695,6 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
         }
 
         return fileStateMap;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Collection<String> getTags(File file) throws ConfigurationManagementException {
-        // This method will be deprecated - no implementation.
-    	throw new ConfigurationManagementException("Tag features not implemented");
     }
 
     /**
@@ -882,24 +858,6 @@ public class TfsAdapter extends TfsBase implements CMAdapter {
                 RemoveErrorListenerAndProcessErrors(errorListener);
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void removeTag(Collection<File> files, String tagName, String comment) throws ConfigurationManagementException {
-        // This method will be deprecated - no implementation.
-    	throw new ConfigurationManagementException("Tag features not implemented");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void removeTag(String tagName, String comment, File fileInSandbox) throws ConfigurationManagementException {
-        // This method will be deprecated - no implementation.
-    	throw new ConfigurationManagementException("Tag features not implemented");
     }
 
     /**

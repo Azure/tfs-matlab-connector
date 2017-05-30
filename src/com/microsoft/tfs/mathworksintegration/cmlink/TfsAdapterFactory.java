@@ -10,9 +10,9 @@ import org.apache.commons.logging.impl.SimpleLog;
 
 import com.mathworks.cmlink.api.ApplicationInteractor;
 import com.mathworks.cmlink.api.ConfigurationManagementException;
-import com.mathworks.cmlink.api.version.r14a.CMAdapter;
-import com.mathworks.cmlink.api.version.r14a.CMAdapterFactory;
-import com.mathworks.cmlink.api.version.r14a.CMRepository;
+import com.mathworks.cmlink.api.version.r16b.CMAdapter;
+import com.mathworks.cmlink.api.version.r16b.CMAdapterFactory;
+import com.mathworks.cmlink.api.version.r16b.CMRepository;
 import com.microsoft.tfs.core.config.httpclient.DefaultHTTPClientFactory;
 import com.microsoft.tfs.core.ws.runtime.client.SOAPService;
 

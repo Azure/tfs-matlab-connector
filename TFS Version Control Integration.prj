@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="320860973" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="128884985" file="D:\tfs-matlab-connector\TFS Version Control Integration.prj" location="D:\tfs-matlab-connector" name="TFS Version Control Integration" target="target.mlapps" target-name="Package App">
     <param.appname>TFS Version Control Integration</param.appname>
     <param.authnamewatermark>Jasper Schneider</param.authnamewatermark>
     <param.email>jaschnei@microsoft.com</param.email>
@@ -9,17 +9,15 @@
     <param.summary>TFS Version Control Integration in MATLAB and Simulink.</param.summary>
     <param.description>TFS Version Control Integration in MATLAB and Simulink.</param.description>
     <param.screenshot />
-    <param.version>1.1.0</param.version>
+    <param.version>2.0.0</param.version>
     <param.products.name>
       <item>MATLAB</item>
     </param.products.name>
     <param.products.id>
-      <item>'1'</item>
-      <item>'35000'</item>
+      <item>1</item>
     </param.products.id>
     <param.products.version>
-      <item>8.5</item>
-      <item>8.5</item>
+      <item>9.2</item>
     </param.products.version>
     <param.platforms>
       <item>glnxa64</item>
@@ -27,12 +25,13 @@
       <item>glnx86</item>
       <item>win32</item>
     </param.platforms>
-    <param.output>${PROJECT_ROOT}\TFS Version Control Integration.mlappinstall</param.output>
+    <param.output>D:\tfs-matlab-connector</param.output>
     <param.guid>bef991df-106d-4a5a-9700-6f60085cbfbd</param.guid>
     <unset>
       <param.icon />
       <param.icons />
       <param.screenshot />
+      <param.output />
     </unset>
     <fileset.main>
       <file>${PROJECT_ROOT}\appReadMe.m</file>
@@ -145,11 +144,11 @@
     </fileset.resources>
     <fileset.package />
     <build-deliverables>
-      <file location="D:\tfs-matlab-connector" name="TFS Version Control Integration.mlappinstall" optional="false">D:\tfs-matlab-connector\TFS Version Control Integration.mlappinstall</file>
+      <file location="D:\" name="tfs-matlab-connector" optional="false">D:\tfs-matlab-connector</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2015a</root>
+      <root>C:\Program Files\MATLAB\R2017a</root>
       <toolboxes />
     </matlab>
     <platform>

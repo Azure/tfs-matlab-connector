@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.mathworks.cmlink.api.ConfigurationManagementException;
 import com.microsoft.tfs.core.clients.versioncontrol.events.NonFatalErrorEvent;
 import com.microsoft.tfs.core.clients.versioncontrol.events.NonFatalErrorListener;
+import com.microsoft.tfs.core.clients.versioncontrol.soapextensions.Failure;
 
 /**
  * Implementation of the {@link NonFataErrorListener} interface which processes
@@ -44,8 +45,11 @@ public class TfsErrorListener implements NonFatalErrorListener {
 
         StringBuilder sb = new StringBuilder();
         for (NonFatalErrorEvent error : errors) {
-            sb.append(error.getFailure().getCode());
-            sb.append(" ");
+        	Failure failure = error.getFailure();
+        	if (failure != null) {
+                sb.append(failure.getCode());
+                sb.append(" ");
+        	}
             sb.append(error.getMessage());
             sb.append("; ");
         }

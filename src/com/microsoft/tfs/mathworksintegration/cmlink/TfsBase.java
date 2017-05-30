@@ -9,7 +9,7 @@ import com.mathworks.cmlink.api.ConfigurationManagementException;
 import com.mathworks.cmlink.api.InteractorSupportedFeature;
 import com.mathworks.cmlink.api.customization.CoreAction;
 import com.mathworks.cmlink.api.customization.CustomizationWidgetFactory;
-import com.mathworks.cmlink.api.version.r14a.CMInteractor;
+import com.mathworks.cmlink.api.version.r16b.CMInteractor;
 
 /**
  * Implementation of the {@link CMInteractor} interface which handles TFS connections.
@@ -55,13 +55,11 @@ public class TfsBase implements CMInteractor {
 
         // This text shows up in the View Details dialog under the "TFS info:" label.
         String infoString = null;
-        try {
-            String url = Utilities.getTfsConnection().getBaseURI().toString();
-            infoString = "URL: " + url;
+        String endpoint = Utilities.getStoredEndpoint();
+        if (endpoint != null) {
+        	infoString = "Stored URL: " + endpoint;
         }
-        catch (Exception ex) {
-        	// Just don't display anything
-        }
+
         widgetFactory.createLabelWidget(infoString);
     }
 

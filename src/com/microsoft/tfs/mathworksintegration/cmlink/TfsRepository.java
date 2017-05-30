@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import com.mathworks.cmlink.api.ApplicationInteractor;
 import com.mathworks.cmlink.api.ConfigurationManagementException;
 import com.mathworks.cmlink.api.RepositorySupportedFeature;
-import com.mathworks.cmlink.api.version.r14a.CMRepository;
+import com.mathworks.cmlink.api.version.r16b.CMRepository;
 import com.microsoft.tfs.core.clients.versioncontrol.GetOptions;
 import com.microsoft.tfs.core.clients.versioncontrol.VersionControlClient;
 import com.microsoft.tfs.core.clients.versioncontrol.WorkspaceLocation;
