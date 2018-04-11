@@ -66,3 +66,4 @@ build
 *.project
 *.asv
 dist/TfsSettings.txt
+test/*
